@@ -2,7 +2,7 @@ import { env } from 'cloudflare:workers';
 import { drizzle } from 'drizzle-orm/d1';
 import { container } from 'tsyringe';
 import { HelloRepository } from '../infrastructure/hello/repository';
-import { IHelloRepository } from '../domain/repositories/IHelloRepository';
+import { IHelloRepository } from '../domain/repositories/hello/IHelloRepository';
 
 const db = drizzle(env.DB);
 export const DatabaseProviderToken = Symbol('DATABASE_TOKEN');

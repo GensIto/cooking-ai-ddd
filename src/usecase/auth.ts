@@ -1,13 +1,14 @@
-import { JWT_TOKEN } from '@/config/constants';
 import { User } from '@/domain/entities/user';
-import { IAuthRepository } from '@/domain/repositories/IAuthRepository';
+import { IAuthRepository } from '@/domain/repositories/auth/IAuthRepository';
+import { IContextProvider } from '@/infrastructure/providers/IContextProvider';
 import { sign } from 'hono/jwt';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()
 export class AuthUsecase {
   constructor(
-    @inject('IAuthRepository') private authRepository: IAuthRepository
+    @inject('IAuthRepository') private authRepository: IAuthRepository,
+    @inject('IContextProvider') private contextProvider: IContextProvider
   ) {}
 
   async login(email: string, password: string): Promise<string> {
@@ -16,7 +17,8 @@ export class AuthUsecase {
       throw new Error('Invalid email or password');
     }
 
-    const token = await sign({ id: user.getId }, JWT_TOKEN);
+    const jwtSecret = this.contextProvider.getJwtSecret();
+    const token = await sign({ id: user.getId }, jwtSecret);
     return token;
   }
 

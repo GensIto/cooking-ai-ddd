@@ -1,11 +1,11 @@
-import { inject, injectable } from "tsyringe";
-import { IHelloRepository } from "../domain/repositories/IHelloRepository";
-import { Hello } from "@/domain/entities/hello";
+import { inject, injectable } from 'tsyringe';
+import { IHelloRepository } from '../domain/repositories/hello/IHelloRepository';
+import { Hello } from '@/domain/entities/hello';
 
 @injectable()
 export class HelloUsecase {
   constructor(
-    @inject("IHelloRepository")
+    @inject('IHelloRepository')
     private readonly helloRepository: IHelloRepository
   ) {}
 
