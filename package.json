@@ -1,0 +1,35 @@
+{
+  "name": "cooking-ai-ddd",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "db:gen": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply hono-ddd --local",
+    "db:migrate:remote": "wrangler d1 migrations apply hono-ddd --remote",
+    "db:studio": "drizzle-kit studio --config drizzle.config.local.ts",
+    "db:studio:prod": "drizzle-kit studio",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@hono/zod-validator": "0.7.2",
+    "dotenv": "17.2.1",
+    "drizzle-orm": "0.44.5",
+    "hono": "4.9.4",
+    "reflect-metadata": "0.2.2",
+    "tsyringe": "4.10.0",
+    "zod": "4.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0",
+    "@typescript-eslint/eslint-plugin": "8.41.0",
+    "drizzle-kit": "0.31.4",
+    "eslint": "9.34.0",
+    "eslint-import-resolver-typescript": "4.4.4",
+    "eslint-plugin-import": "2.32.0",
+    "prettier": "3.6.2",
+    "wrangler": "4.4.0"
+  }
+}

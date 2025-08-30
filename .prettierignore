@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+.next
+.nuxt
+coverage
+*.min.js
+*.bundle.js
+package-lock.json
+yarn.lock
+drizzle/
+wrangler.jsonc
