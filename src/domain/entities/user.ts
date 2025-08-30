@@ -1,12 +1,11 @@
 import { Email } from '@/domain/value/user/email';
-import { HashPassword } from '@/domain/value/user/hashPassword';
-import crypto from 'crypto';
+import { v4 as uuid } from 'uuid';
 
 export class User {
   constructor(
     public id: string,
     public email: Email,
-    public password: HashPassword
+    public password: string
   ) {}
 
   public get getId() {
@@ -20,12 +19,11 @@ export class User {
   }
 
   static create(email: string, password: string): User {
-    const id = crypto.randomUUID();
-    const hashPassword = HashPassword.create(password);
-    return new User(id, new Email(email), hashPassword);
+    const id = uuid();
+    return new User(id, new Email(email), password);
   }
 
-  static fromStorage(id: string, email: string, hashedPassword: string): User {
-    return new User(id, new Email(email), new HashPassword(hashedPassword));
+  static fromStorage(id: string, email: string, password: string): User {
+    return new User(id, new Email(email), password);
   }
 }

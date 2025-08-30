@@ -13,7 +13,7 @@ export class AuthUsecase {
 
   async login(email: string, password: string): Promise<string> {
     const user = await this.authRepository.findByEmail(email);
-    if (!user || user.getPassword.getValue() !== password) {
+    if (!user || user.getPassword !== password) {
       throw new Error('Invalid email or password');
     }
 

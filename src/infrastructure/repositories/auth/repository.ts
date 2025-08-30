@@ -26,7 +26,7 @@ export class AuthRepository implements IAuthRepository {
     return User.fromStorage(
       users_table.id,
       user_email_table.email,
-      user_email_table.hashPassword
+      user_email_table.password
     );
   }
 
@@ -38,7 +38,7 @@ export class AuthRepository implements IAuthRepository {
       .values({
         userId: user.getId,
         email: user.getEmail.getValue(),
-        hashPassword: user.getPassword.getValue(),
+        password: user.getPassword,
       })
       .run();
   }

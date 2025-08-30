@@ -20,9 +20,11 @@
     "hono": "4.9.4",
     "reflect-metadata": "0.2.2",
     "tsyringe": "4.10.0",
+    "uuid": "^11.1.0",
     "zod": "4.1.4"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250830.0",
     "@types/node": "24.3.0",
     "@typescript-eslint/eslint-plugin": "8.41.0",
     "drizzle-kit": "0.31.4",

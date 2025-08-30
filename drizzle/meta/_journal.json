@@ -15,6 +15,13 @@
       "when": 1756548710710,
       "tag": "0001_faithful_luckman",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1756558509640,
+      "tag": "0002_productive_nuke",
+      "breakpoints": true
     }
   ]
 }

@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import { v4 as uuid } from 'uuid';
 import { usersTable } from '@/infrastructure/db/user';
 import { sql } from 'drizzle-orm';
 import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
@@ -6,9 +6,9 @@ import { sqliteTable, text } from 'drizzle-orm/sqlite-core';
 export const userEmailTable = sqliteTable('user_email_table', {
   id: text()
     .primaryKey()
-    .$defaultFn(() => crypto.randomUUID()),
+    .$defaultFn(() => uuid()),
   email: text().unique().notNull(),
-  hashPassword: text('hash_password').notNull(),
+  password: text().notNull(),
   userId: text('user_id')
     .notNull()
     .references(() => usersTable.id),

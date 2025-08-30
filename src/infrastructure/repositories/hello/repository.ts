@@ -2,7 +2,6 @@ import { inject, injectable } from 'tsyringe';
 import { Hello } from '@/domain/entities/hello';
 import { PersonName } from '@/domain/value/hello/personName';
 import { DatabaseProvider, DatabaseProviderToken } from '@/config/db';
-import crypto from 'crypto';
 import { helloTable } from '@/infrastructure/db/hello';
 import { IHelloRepository } from '@/domain/interface/IHelloRepository';
 
@@ -18,7 +17,6 @@ export class HelloRepository implements IHelloRepository {
       const [row] = await this.db
         .insert(helloTable)
         .values({
-          id: crypto.randomUUID(),
           name,
           createdAt: now,
           updatedAt: now,

@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import '@/config/container';
 
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
