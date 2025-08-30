@@ -1,4 +1,4 @@
-import { IContextProvider } from '@/infrastructure/providers/IContextProvider';
+import { IContextProvider } from '@/domain/interface/IContextProvider';
 import { Context } from 'hono';
 import { injectable } from 'tsyringe';
 

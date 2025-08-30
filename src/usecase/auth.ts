@@ -1,6 +1,6 @@
 import { User } from '@/domain/entities/user';
-import { IAuthRepository } from '@/domain/repositories/auth/IAuthRepository';
-import { IContextProvider } from '@/infrastructure/providers/IContextProvider';
+import { IAuthRepository } from '@/domain/interface/IAuthRepository';
+import { IContextProvider } from '@/domain/interface/IContextProvider';
 import { sign } from 'hono/jwt';
 import { inject, injectable } from 'tsyringe';
 

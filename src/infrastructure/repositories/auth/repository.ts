@@ -1,8 +1,8 @@
 import { DatabaseProvider, DatabaseProviderToken } from '@/config/db';
 import { User } from '@/domain/entities/user';
-import { IAuthRepository } from '@/domain/repositories/auth/IAuthRepository';
-import { usersTable } from '@/infrastructure/db/users';
+import { usersTable } from '@/infrastructure/db/user';
 import { userEmailTable } from '@/infrastructure/db/userEmail';
+import { IAuthRepository } from '@/domain/interface/IAuthRepository';
 
 import { eq } from 'drizzle-orm';
 import { inject, injectable } from 'tsyringe';

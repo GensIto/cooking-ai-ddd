@@ -3,6 +3,8 @@ import { ContextProvider } from '@/infrastructure/providers/ContextProvider';
 import { Hono } from 'hono';
 import { setCookie } from 'hono/cookie';
 import { inject, injectable } from 'tsyringe';
+import { zValidator } from '@hono/zod-validator';
+import z from 'zod';
 
 @injectable()
 export class AuthController {
@@ -14,24 +16,44 @@ export class AuthController {
 
   routes() {
     return this.controller
-      .post('/login', async (c) => {
-        this.contextProvider.setContext(c);
-        const { email, password } = await c.req.json();
-        const token = await this.authUsecase.login(email, password);
+      .post(
+        '/login',
+        zValidator(
+          'json',
+          z.object({
+            email: z.email(),
+            password: z.string().min(6).max(100),
+          })
+        ),
+        async (c) => {
+          this.contextProvider.setContext(c);
+          const { email, password } = await c.req.json();
+          const token = await this.authUsecase.login(email, password);
 
-        setCookie(c, 'jwt_token', token);
+          setCookie(c, 'jwt_token', token);
 
-        return c.json({ token });
-      })
-      .post('/signup', async (c) => {
-        this.contextProvider.setContext(c);
-        const { email, password } = await c.req.json();
-        await this.authUsecase.register(email, password);
-        const token = await this.authUsecase.login(email, password);
+          return c.json({ token });
+        }
+      )
+      .post(
+        '/signup',
+        zValidator(
+          'json',
+          z.object({
+            email: z.email(),
+            password: z.string().min(6).max(100),
+          })
+        ),
+        async (c) => {
+          this.contextProvider.setContext(c);
+          const { email, password } = await c.req.json();
+          await this.authUsecase.register(email, password);
+          const token = await this.authUsecase.login(email, password);
 
-        setCookie(c, 'jwt_token', token);
+          setCookie(c, 'jwt_token', token);
 
-        return c.json({ token });
-      });
+          return c.json({ token });
+        }
+      );
   }
 }

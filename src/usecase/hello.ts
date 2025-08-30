@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
-import { IHelloRepository } from '../domain/repositories/hello/IHelloRepository';
+
 import { Hello } from '@/domain/entities/hello';
+import { IHelloRepository } from '@/domain/interface/IHelloRepository';
 
 @injectable()
 export class HelloUsecase {

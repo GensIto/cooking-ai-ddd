@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 import { Hello } from '@/domain/entities/hello';
 import { PersonName } from '@/domain/value/hello/personName';
-import { IHelloRepository } from '@/domain/repositories/hello/IHelloRepository';
 import { DatabaseProvider, DatabaseProviderToken } from '@/config/db';
 import crypto from 'crypto';
 import { helloTable } from '@/infrastructure/db/hello';
+import { IHelloRepository } from '@/domain/interface/IHelloRepository';
 
 @injectable()
 export class HelloRepository implements IHelloRepository {
