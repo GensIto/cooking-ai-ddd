@@ -30,7 +30,12 @@ export class AuthController {
           const { email, password } = await c.req.json();
           const token = await this.authUsecase.login(email, password);
 
-          setCookie(c, 'jwt_token', token);
+          setCookie(c, 'jwt_token', token, {
+            expires: new Date(new Date().setDate(new Date().getDate() + 7)),
+            secure: false,
+            sameSite: 'Lax',
+            httpOnly: false,
+          });
 
           return c.json({ token });
         }
@@ -50,7 +55,12 @@ export class AuthController {
           await this.authUsecase.register(email, password);
           const token = await this.authUsecase.login(email, password);
 
-          setCookie(c, 'jwt_token', token);
+          setCookie(c, 'jwt_token', token, {
+            expires: new Date(new Date().setDate(new Date().getDate() + 7)),
+            secure: false,
+            sameSite: 'Lax',
+            httpOnly: false,
+          });
 
           return c.json({ token });
         }

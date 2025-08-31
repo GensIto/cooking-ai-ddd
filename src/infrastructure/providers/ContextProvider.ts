@@ -10,7 +10,7 @@ export class ContextProvider implements IContextProvider {
     this.context = context;
   }
 
-  getJwtSecret(): string {
+  getJwtSecret() {
     if (!this.context) {
       throw new Error('Context not set. Call setContext() first.');
     }
@@ -21,5 +21,18 @@ export class ContextProvider implements IContextProvider {
     }
 
     return secret;
+  }
+
+  getAiContext() {
+    if (!this.context) {
+      throw new Error('Context not set. Call setContext() first.');
+    }
+
+    const aiContext = this.context.env.AI;
+    if (!aiContext) {
+      throw new Error('AI_CONTEXT not found in environment variables');
+    }
+
+    return aiContext;
   }
 }
